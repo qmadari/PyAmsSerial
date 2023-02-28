@@ -3,7 +3,7 @@ import subprocess
 import json
 from zlib import crc32
 
-class AmsSignal:
+class AmsConnection:
     def __init__(self,port = 'auto') -> None:
         self.baud = 38400 # 5FS uses 38400
         self.port = port # windows: COM number
@@ -116,7 +116,7 @@ class AmsSignal:
 def main ():
 
     ## Open a connection to AMS device using
-    connection = AmsSignal()
+    connection = AmsConnection()
 
     ## Close it using
     connection.close() # This port can't be re-opened as long as it isn't closed or the AMS IR-cable is physically disconnected
@@ -127,7 +127,7 @@ def main ():
     ## With this number you can force the AMS connection to use this port.
 
     com = 'COM3' # Or any other number you found
-    connection = AmsSignal(port=com)
+    connection = AmsConnection(port=com)
 
     ## After connecting, start the AMS Recording with
     connection.start()

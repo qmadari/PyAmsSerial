@@ -16,7 +16,7 @@ Place the PyAmsSerial.py file in your python project folder. Implement it into y
 And follow the instructions in it's `main` function:
 
 ### Open a connection to AMS device using
-    `connection = AmsSignal()`
+    ```connection = AmsConnection()```
 Please be sure only one AMS IR-cable is connected to the PC.
 An attempt will be made to find the connected COM port automatically.
 If multiple devices with the name 'USB Serial Port' are connected to the PC, the first device matching this name will be used as AMS device.
@@ -27,19 +27,30 @@ The COM port can be found in the windows Device Manager (Right click on the Wind
 - Locate 'Ports (COM & LPT)' and look up a name matching 'USB Serial Port COM3', where COM3 could be COM7 or any other.
 With this number you can force the AMS connection to use this port.
 
-    `com = 'COM3' # Or any other number you found`
-    `connection = AmsSignal(port=com)`
+    ```python
+    com = 'COM3' # Or any other number you found
+    connection = AmsConnection(port=com)
+    ```
 
 ### After connecting, start the AMS Recording with
-    `connection.start()`
+    ```python
+    connection.start()
+    ```
 
 ### Send a marker containing your custom message using
-    `connection.messageMarker(message = "your message")`
+    ```python
+    connection.messageMarker(message = "your message")
+    ```
 
 ### Stop the recording using
-    `connection.stop()`
+    ```python
+    connection.stop()
+    ```
 
 ### And finish by closing the connection
-    `connection.close()`
-> This port can't be re-opened as long as it isn't closed or the AMS IR-cable is physically disconnected.
+    ```python
+    connection.close()
+    ```
+    
+Note: The used port can't be re-opened as long as it isn't closed in this way. Either keep this connection open during the whole session, or close it and reconnect to the AMS by making a new `AmsConnection()`to the same port when a new (series of) markers have to be sent.
 
