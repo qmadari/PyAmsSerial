@@ -27,30 +27,30 @@ The COM port can be found in the windows Device Manager (Right click on the Wind
 - Locate 'Ports (COM & LPT)' and look up a name matching 'USB Serial Port COM3', where COM3 could be COM7 or any other.
 With this number you can force the AMS connection to use this port.
 
-    ```python
-    com = 'COM3' # Or any other number you found
-    connection = AmsConnection(port=com)
-    ```
+```python
+com = 'COM3' # Or any other number you found
+connection = AmsConnection(port=com)
+```
 
 ### After connecting, start the AMS Recording with
-    ```python
-    connection.start()
-    ```
+```python
+connection.start()
+```
 
 ### Send a marker containing your custom message using
-    ```python
-    connection.messageMarker(message = "your message")
-    ```
+```python
+connection.messageMarker(message = "your message")
+```
 
 ### Stop the recording using
-    ```python
-    connection.stop()
-    ```
+```python
+connection.stop()
+```
 
 ### And finish by closing the connection
-    ```python
-    connection.close()
-    ```
+```python
+connection.close()
+```
     
 Note: The used port can't be re-opened as long as it isn't closed in this way. Either keep this connection open during the whole session, or close it and reconnect to the AMS by making a new `AmsConnection()`to the same port when a new (series of) markers have to be sent.
 
