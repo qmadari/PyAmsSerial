@@ -1,8 +1,8 @@
 # PyAmsSerial
-Python library for controlling VU-AMS (5FS) via IR to USB cable (serial infrared spacelabs cable) for use with Windows.
+Python library for controlling [VU-AMS](https://vu-ams.nl/) (5fs device) via IR to USB cable (serial infrared spacelabs cable) for use with Windows.
 
 ## What is it?
-A way to start and stop recordings on-, and to send markers with a custom message to the 5FS AMS device. 
+A way to start and stop recordings on-, and to send markers with a custom message to the 5fs AMS device. 
 
 ## Version and Dependencies
 PyAmsSerial is test to work with python 3.6 up to 3.11.1. Since it has few dependencies it is likely to function properly for at least some future versions of python. If you run in to any errors, please let me know! (q.s.r.madari@vu.nl)
@@ -10,8 +10,12 @@ PyAmsSerial is test to work with python 3.6 up to 3.11.1. Since it has few depen
 The code is dependent on pyserial, subprocess, json and zlib. Of these only pyserial is not included by default. 
 When installing pyserial be sure to use `pip install pyserial` and not `pip install serial`, as this is a package with a conflicting import name.
 
+## VU-DAMS
+This code is intended only to send start, stop and marker commands to the AMS device. Concerning the actual device settings, please make sure you use a computer running the [VU-DAMS](https://vu-ams.nl/downloads/) to configure it as desired. The settings will be retained on the device when disconnected from this computer.
+
 ## Usage
-Copy the PyAmsSerial.py file into your python project folder. Then implement it into your own code as desired using
+Copy the PyAmsSerial.py file into your python project folder, then implement it into your own code as described below.
+
 ```python
 import PyAmsSerial
 ```
