@@ -12,11 +12,15 @@ When installing pyserial be sure to use `pip install pyserial` and not `pip inst
 
 ## Usage
 Place the PyAmsSerial.py file in your python project folder. Implement it into your code as desired using
-`import PyAmsSerial`
+```python
+import PyAmsSerial
+```
 And follow the instructions in it's `main` function:
 
 ### Open a connection to AMS device using
-    ```connection = AmsConnection()```
+```python
+connection = AmsConnection()
+```
 Please be sure only one AMS IR-cable is connected to the PC.
 An attempt will be made to find the connected COM port automatically.
 If multiple devices with the name 'USB Serial Port' are connected to the PC, the first device matching this name will be used as AMS device.
