@@ -5,7 +5,7 @@ Python library for Windows to control the [VU-AMS](https://vu-ams.nl/) (5fs devi
 A way to start and stop recordings on-, and to send markers with a custom message to the 5fs AMS device. 
 
 ## Version and Dependencies
-PyAmsSerial is test to work with python 3.6 up to 3.11.1. Since it has only few dependencies it is likely to function properly for at least some future versions of python. If you run in to any errors, please let me know! (q.s.r.madari@vu.nl)
+PyAmsSerial is test to work with python 3.6 up to 3.11.1. Since it has only few dependencies, it is likely to function properly for (at least some) future versions of python. If you run in to any errors, please let me know! (q.s.r.madari@vu.nl)
 
 The code is dependent on pyserial, subprocess, json and zlib. Of these only pyserial is not included by default. 
 When installing pyserial be sure to use `pip install pyserial` and not `pip install serial`, as this is a package with a conflicting import name.
