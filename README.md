@@ -11,7 +11,7 @@ The code is dependent on pyserial, subprocess, json and zlib. Of these only pyse
 When installing pyserial be sure to use `pip install pyserial` and not `pip install serial`, as this is a package with a conflicting import name.
 
 ## Usage
-Place the PyAmsSerial.py file in your python project folder. Implement it into your code as desired using
+Copy the PyAmsSerial.py file into your python project folder. Then implement it into your own code as desired using
 ```python
 import PyAmsSerial
 ```
