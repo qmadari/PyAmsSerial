@@ -1,5 +1,5 @@
 # PyAmsSerial
-Python library for controlling [VU-AMS](https://vu-ams.nl/) (5fs device) via IR to USB cable (serial infrared spacelabs cable) for use with Windows.
+Python library for Windows to control the [VU-AMS](https://vu-ams.nl/) (5fs device) via USB cable (Serial Infrared SpaceLabs cable).
 
 ## What is it?
 A way to start and stop recordings on-, and to send markers with a custom message to the 5fs AMS device. 
