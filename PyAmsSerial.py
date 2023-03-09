@@ -18,6 +18,7 @@ class AmsConnection:
                 print(f'AMS device found on {foundport}.')
                 self.port = foundport
 
+    def open(self):
         self.ser = serial.Serial(self.port, self.baud, self.bytesize, self.parity, self.stopbits)
 
     def __appendCRC__(self,intbytearr):
@@ -71,7 +72,7 @@ class AmsConnection:
         """ Used to actually send the packet """
         self.ser.write(bytearray)
 
-    def findAMSDevice():
+    def findAMSDevice(self):
         dev = None
         target = None
         out = subprocess.getoutput("PowerShell -Command \"& {Get-PnpDevice | Where-Object {$_.FriendlyName -Like '*(COM*'} | Where-Object {$_.Status -Like '*OK*'} | Where-Object {$_.FriendlyName -Like '*USB Serial Port*'}  | Select-Object Status,Class,FriendlyName,InstanceId | ConvertTo-Json}\"")
@@ -114,12 +115,27 @@ class AmsConnection:
         print('AMS stop')
 
 def main ():
+    import time
+    ### Method 1: find COM port automatically
 
     ## Open a connection to AMS device using
     connection = AmsConnection()
-
+    ## Open it using
+    connection.open()
+    ## After connecting, start the AMS Recording with
+    connection.start()
+    time.sleep(3) 
+    
+    ## Send a marker containing your custom message using
+    connection.messageMarker(message = "your message")
+    time.sleep(3)
+    ## Stop the recording using
+    connection.stop()
+    time.sleep(3)
     ## Close it using
     connection.close() # This port can't be re-opened as long as it isn't closed or the AMS IR-cable is physically disconnected
+
+    ### Method 2: Select COM port manually
 
     ## The COM port can be found in the windows Device Manager (Right click on the Windows Start menu, select Device Manager)
     ## - Be sure the IR-cable is connected
@@ -129,19 +145,13 @@ def main ():
     com = 'COM3' # Or any other number you found
     connection = AmsConnection(port=com)
 
-    ## After connecting, start the AMS Recording with
+    connection.open()
     connection.start()
-    # time.sleep(3) # import time
-    
-    ## Send a marker containing your custom message using
+    time.sleep(3) 
     connection.messageMarker(message = "your message")
-    # time.sleep(3) # import time
-
-    ## Stop the recording using
+    time.sleep(3)
     connection.stop()
-    # time.sleep(3) # import time
-
-    ## And finish by closing the connection
+    time.sleep(3)
     connection.close()
 
 if __name__ == "__main__":

@@ -40,6 +40,11 @@ com = 'COM3' # Or any other number you found
 connection = AmsConnection(port=com)
 ```
 
+### Open the serial COM connection to the AMS with 
+```python
+connection.open()
+```
+
 ### After connecting, start the AMS Recording with
 ```python
 connection.start()
