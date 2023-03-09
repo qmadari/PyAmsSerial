@@ -65,5 +65,5 @@ connection.stop()
 connection.close()
 ```
     
-Note: The used port can't be re-opened as long as it isn't closed in this way. Either keep this connection open during the whole session, or close it and reconnect to the AMS by making a new `AmsConnection()`to the same port when a new (series of) markers have to be sent.
+Note: The used port can't be re-opened as long as it isn't closed in this way. Either keep this connection open during the whole session, or close it and re-open it using the `open()` method. Once the port is closed, it is also possible to create an entirely new `AmsConnection()`.
 
