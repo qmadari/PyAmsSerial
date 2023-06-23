@@ -13,7 +13,7 @@ class AmsConnection:
         self.timeout = 1
 
         if self.port == 'auto':
-           foundport = self.findAMSDevice()
+           foundport = self.detectAMSIRCable()
            if foundport:
                 print(f'AMS device found on {foundport}.')
                 self.port = foundport
@@ -72,10 +72,11 @@ class AmsConnection:
         """ Used to actually send the packet """
         self.ser.write(bytearray)
 
-    def findAMSDevice(self):
+    def detectAMSIRCable(self):
+        """Used to detect the COM port assigned to the AMS IR cable"""
         dev = None
         target = None
-        out = subprocess.getoutput("PowerShell -Command \"& {Get-PnpDevice | Where-Object {$_.FriendlyName -Like '*(COM*'} | Where-Object {$_.Status -Like '*OK*'} | Where-Object {$_.FriendlyName -Like '*USB Serial Port*'}  | Select-Object Status,Class,FriendlyName,InstanceId | ConvertTo-Json}\"")
+        out = subprocess.getoutput("PowerShell -Command \"& {Get-PnpDevice | Where-Object {$_.FriendlyName -Like '*(COM*'} | Where-Object {$_.Status -Like '*OK*'} | Where-Object {$_.FriendlyName -Like '*USB Serial Port*'} | Where-Object {$_.PNPDeviceID -Like '*PID_6001*'} | Select-Object Status,Class,FriendlyName,InstanceId,PNPDeviceID | ConvertTo-Json}\"")
         if out == '':
             print(f"'WARN: USB Serial Port' not found in serial devices list, AMS not available.")
             return dev
@@ -114,7 +115,7 @@ class AmsConnection:
         self.__write__(bytearray=bytearr)
         print('AMS stop')
 
-def main ():
+def example():
     import time
     ### Method 1: find COM port automatically
 
@@ -155,4 +156,4 @@ def main ():
     connection.close()
 
 if __name__ == "__main__":
-    main()
+    example()
