@@ -136,7 +136,9 @@ def example():
     ## Close it using
     connection.close() # This port can't be re-opened as long as it isn't closed or the AMS IR-cable is physically disconnected
 
-    ### Method 2: Select COM port manually
+
+def example2():
+    import time
 
     ## The COM port can be found in the windows Device Manager (Right click on the Windows Start menu, select Device Manager)
     ## - Be sure the IR-cable is connected
@@ -157,3 +159,4 @@ def example():
 
 if __name__ == "__main__":
     example()
+  #  example2()
